@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!---->
+</head>
+<body>
+    <div class="container">
+    <canvas id="myChartLine"></canvas><!--é o canvas onde nossa grafico é exibido-->
+     <canvas id="myChart"></canvas>
+    </div>
+
+</body>
+</html>
+<script>
+  const ctx = document.getElementById('myChart'); //variavel constante que não muda
+  const ctxLine = document.getElementById('myChartLine'); //variavel dos valores em Line
+
+  new Chart(ctxLine, { //a chavez indicam jason -- o charts precisa de elementos que são atributos dele
+    type: 'line', //grafico de colunas(line)
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'], //nome das colunas
+      datasets: [{ //aparecem no nosso grafico dinamicamente (dados que aparece dinamicamente no nosso grafico)
+        label: 'Temperatura', //dado
+        // Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'
+        //   0          1            2        3       4        5
+        data: [30, 29, 28, 25, 22, 23],  //vetor
+        borderWidth: 1,
+        borderColor: '#f07432',
+        backgroundColor: '#f07432',
+      }, {
+        label: 'Umidade', //dado
+        // Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'
+        //   0          1            2        3       4        5
+        data: [80, 82, 80, 85, 80, 83],  //vetor
+        borderWidth: 1,
+        borderColor: '#B50000',
+        backgroundColor: '#B50000',
+      }
+    ]
+    },
+    options: {
+      scales: {
+        y: { //vertical
+          beginAtZero: false 
+        }
+      }
+    }
+  });
+
+  new Chart(ctx, { //a chavez indicam jason -- o charts precisa de elementos que são atributos dele
+    type: 'bar', //grafico de colunas(bar)
+    data: {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'], //nome das colunas
+      datasets: [{ //aparecem no nosso grafico dinamicamente (dados que aparece dinamicamente no nosso grafico)
+        label: 'Temperatura Média', //dado
+        // Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'
+        //   0          1            2        3       4        5
+        data: [22, 24, 27, 23, 20, 18],  //vetor
+        borderWidth: 3, //muda a grossura da borda
+        borderColor: '#f07432',
+        backgroundColor: '#f07432',
+      }, { // chaves e , para acrescentar outra informação para o vetor (coluna)
+        label: 'Umidade Média', //dado
+        // Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'
+        //   0          1            2        3       4        5
+        data: [90, 89, 93, 87, 88, 82],  //vetor
+        borderWidth: 3,
+        borderColor:'#B50000' ,
+        backgroundColor: '#B50000',
+      }
+    ]
+    },
+    options: { //configuração adicional 
+      scales: {
+        y: { //vertical
+          beginAtZero: false // ele começa em zero? não quero começar pelo o que tem valor
+        }
+      }
+    }
+  });
+  
+</script>
